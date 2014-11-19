@@ -7,11 +7,11 @@ export ARCH=arm
 if [ "$1" == "local" ]; then
 	echo "GITHUB Build"
 	build=/home/daniel/android-dev/kernel_github
-	export CROSS_COMPILE=/home/daniel/android-dev/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.10/bin/arm-eabi-
+	export CROSS_COMPILE=/home/daniel/android-dev/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.10/bin/arm-cortex_a15-linux-gnueabihf-
 else
 	echo "TEST Build"
 	build=/home/daniel/android-dev/kernel_test
-	export CROSS_COMPILE=/home/daniel/android-dev/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.10/bin/arm-eabi-
+	export CROSS_COMPILE=/home/daniel/android-dev/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.10/bin/arm-cortex_a15-linux-gnueabihf-
 fi
 kernel="StaX"
 version="0.1"
