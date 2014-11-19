@@ -18,7 +18,6 @@ lib-y		:= backtrace.o changebit.o csumipv6.o csumpartial.o   \
 
 mmu-y	:= clear_user.o getuser.o putuser.o
 
-
 # the code in uaccess.S is not preemption safe and
 # probably faster on ARMv3 only
 ifneq ($(CONFIG_HAS_MACH_MEMUTILS),y)
@@ -51,10 +50,3 @@ lib-$(CONFIG_ARCH_SHARK)	+= io-shark.o
 
 $(obj)/csumpartialcopy.o:	$(obj)/csumpartialcopygeneric.S
 $(obj)/csumpartialcopyuser.o:	$(obj)/csumpartialcopygeneric.S
-
-
-ifeq ($(CONFIG_KERNEL_MODE_NEON),y)
-NEON_FLAGS	:= -mfloat-abi=softfp -mfpu=neon-vfpv4
-CFLAGS_xor-neon.o	+= $(NEON_FLAGS)
-obj-$(CONFIG_XOR_BLOCKS)	+= xor-neon.o
-endif
