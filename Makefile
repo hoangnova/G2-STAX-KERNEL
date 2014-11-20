@@ -358,7 +358,7 @@ KERNEL_FLAGS	= -marm -mtune=cortex-a15 -mfpu=neon-vfpv4 \
 		  -mvectorize-with-neon-quad -fgcse-after-reload -fgcse-sm \
 		  -fgcse-las -ftree-loop-im -ftree-loop-ivcanon -fivopts \
 		  -ftree-vectorize -fmodulo-sched -ffast-math \
-+		  -funsafe-math-optimizations
+		  -funsafe-math-optimizations
 
 CFLAGS_MODULE   = -DMODULE $(KERNEL_FLAGS)
 AFLAGS_MODULE   =
