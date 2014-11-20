@@ -20,3 +20,5 @@
 #ifndef cpu_read_relax
 #define cpu_read_relax() cpu_relax()
 #endif
+
+#endif /*_ASM_GENERIC_PROCESSOR_H_*/
