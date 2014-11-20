@@ -229,7 +229,7 @@ static struct sock *unix_lookup_by_ino(int ino)
 	struct sock *sk;
 
 	spin_lock(&unix_table_lock);
-	for (i = 0; i <= UNIX_HASH_SIZE; i++) {
+	for (i = 0; i < ARRAY_SIZE(unix_socket_table); i++) {
 		struct hlist_node *node;
 
 		sk_for_each(sk, node, &unix_socket_table[i])
