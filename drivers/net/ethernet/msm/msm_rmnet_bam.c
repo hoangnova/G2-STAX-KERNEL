@@ -119,7 +119,7 @@ static ssize_t timeout_suspend_show(struct device *d,
 				    char *buf)
 {
 	return snprintf(buf, PAGE_SIZE, "%lu\n",
-+			(unsigned long) timeout_suspend_us);
+			(unsigned long) timeout_suspend_us);
 }
 
 static DEVICE_ATTR(timeout_suspend, 0664, timeout_suspend_show,
