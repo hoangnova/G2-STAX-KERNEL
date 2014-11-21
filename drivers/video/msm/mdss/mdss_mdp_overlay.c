@@ -1460,7 +1460,6 @@ static int mdss_mdp_overlay_get_fb_pipe(struct msm_fb_data_type *mfd,
 				req.src_rect.w = MIN(fbi->var.xres,
 								mixer->width);
 			}
-
 			req.src_rect.y = 0;
 			req.src_rect.h = req.src.height;
 			req.dst_rect.x = 0;
