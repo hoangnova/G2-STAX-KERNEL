@@ -13,9 +13,8 @@ else
 	build=/home/daniel/android-dev/kernel_test
 	export CROSS_COMPILE=/home/daniel/android-dev/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.10/bin/arm-cortex_a15-linux-gnueabihf-
 fi
-kernel="StaX"
+kernel="StaX_Kernel"
 version="1.0"
-rom=""
 variant="g2"
 ramdisk=ramdisk
 config="stax_defconfig"
@@ -163,12 +162,12 @@ fi
 echo "Zipping..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
 	cd ozip
-	zip -r ../"$kernel"-$version-"$rom"_"$variant".zip .
-	mv ../"$kernel"-$version-"$rom"_"$variant".zip $build
+	zip -r ../"$kernel"-$version_"$variant".zip .
+	mv ../"$kernel"-$version_"$variant".zip $build
 	cd ..
 	rm -rf out ozip/system
 	echo "Done..."
-	echo "Output zip: $build/$kernel-$version-$(echo $rom)_$variant.zip"
+	echo "Output zip: $build/$kernel-$version_$variant.zip"
 	exit 0;
 else
 	echo "No $kerneltype found..."

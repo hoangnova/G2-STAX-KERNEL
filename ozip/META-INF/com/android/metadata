@@ -1,0 +1,3 @@
+post-build=lge/g2_open_com/g2:4.2.2/JDQ39B/D80210a.1378316352:user/release-keys
+post-timestamp=1413620116
+pre-device=d802

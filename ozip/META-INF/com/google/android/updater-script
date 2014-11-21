@@ -1,0 +1,29 @@
+ui_print("@@@ STAX KERNEL - LG G2 @@@");
+ui_print("    By: daniel.stuart14");
+
+#mounting system
+mount("ext4", "EMMC", "/dev/block/platform/msm_sdcc.1/by-name/system", "/system");
+
+ui_print("Coping files...");
+show_progress(0.300000, 10);
+
+#coping modules
+package_extract_dir("system", "/system");
+
+#umount
+unmount("/system");
+show_progress(0.500000, 10);
+
+#coping boot files
+package_extract_file("lcd.sh", "/tmp/lcd.sh");
+package_extract_file("boot.img", "/tmp/boot.img");
+
+ui_print("Patching LCD boot.img...");
+show_progress(0.700000, 10);
+
+#patching kernel with lcd script
+set_perm(0, 0, 0755, "/tmp/lcd.sh");
+assert(run_program("/tmp/lcd.sh") == 0);
+delete("/tmp/lcd.sh");
+ui_print("Finished!");
+show_progress(1.000000, 10);
