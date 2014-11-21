@@ -162,8 +162,8 @@ fi
 echo "Zipping..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
 	cd ozip
-	zip -r ../"$kernel"-$version_"$variant".zip .
-	mv ../"$kernel"-$version_"$variant".zip $build
+	zip -r ../"$kernel"-"$version"_"$variant".zip .
+	mv ../"$kernel"-"$version"_"$variant".zip $build
 	cd ..
 	rm -rf out ozip/system
 	echo "Done..."
