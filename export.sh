@@ -162,12 +162,12 @@ fi
 echo "Zipping..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
 	cd ozip
-	zip -r ../"$kernel"-"$version"_"$variant".zip .
-	mv ../"$kernel"-"$version"_"$variant".zip $build
+	zip -r ../"$kernel"-"$version"_"$variant"_signed.zip .
+	mv ../"$kernel"-"$version"_"$variant"_signed.zip $build
 	cd ..
 	rm -rf out ozip/system
 	echo "Done..."
-	echo "Output zip: $build/$kernel-$version_$variant.zip"
+	echo "Output zip: $build/$kernel-$version_$variant_signed.zip"
 	exit 0;
 else
 	echo "No $kerneltype found..."
