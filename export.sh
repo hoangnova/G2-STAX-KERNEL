@@ -14,8 +14,8 @@ else
 	export CROSS_COMPILE=/home/daniel/android-dev/arm-cortex_a15-linux-gnueabihf-linaro_4.9.2-2014.10/bin/arm-cortex_a15-linux-gnueabihf-
 fi
 kernel="StaX"
-version="0.1"
-rom="aosp"
+version="1.0"
+rom=""
 variant="g2"
 ramdisk=ramdisk
 config="stax_defconfig"
@@ -55,9 +55,9 @@ case "$var" in
                 variant="vs980"
                 config="vs980_defconfig"
                 break;;
-		"f320k")
-                variant="f320k"
-                config="f320k_defconfig"
+		"f320")
+                variant="f320"
+                config="f320_defconfig"
                 break;;
 esac
 done
