@@ -776,8 +776,7 @@ int msm_cpu_pm_enter_sleep(enum msm_pm_sleep_mode mode, bool from_idle)
 
 	if (execute[mode])
 		exit_stat = execute[mode](from_idle);
-
-	if (from_idle) {
+	f (from_idle) {
 		time = sched_clock() - time;
 		msm_pm_ftrace_lpm_exit(smp_processor_id(), mode, collapsed);
 	if (exit_stat >= 0)
