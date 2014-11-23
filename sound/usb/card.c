@@ -48,6 +48,7 @@
 #include <linux/usb/audio.h>
 #include <linux/usb/audio-v2.h>
 #include <linux/module.h>
+#include <linux/switch.h>
 
 #include <sound/control.h>
 #include <sound/core.h>
@@ -294,6 +295,7 @@ static int snd_usb_create_streams(struct snd_usb_audio *chip, int ctrlif)
 		break;
 	}
 	}
+	switch_set_state(usbaudiosdev, BIT_USB_HEADSET_DGTL);
 	return 0;
 }
 
@@ -611,6 +613,7 @@ static void snd_usb_audio_disconnect(struct usb_device *dev,
 	} else {
 		mutex_unlock(&register_mutex);
 	}
+	switch_set_state(usbaudiosdev, 0);
 }
 
 /*
@@ -749,12 +752,27 @@ static struct usb_driver usb_audio_driver = {
 
 static int __init snd_usb_audio_init(void)
 {
+	int err;
+	if (nrpacks < 1 || nrpacks > MAX_PACKS) {
+		printk(KERN_WARNING "invalid nrpacks value.\n");
+		return -EINVAL;
+	}
+
+	usbaudiosdev = kzalloc(sizeof(*usbaudiosdev), GFP_KERNEL);
+	usbaudiosdev->name = "usb_audio";
+
+	err = switch_dev_register(usbaudiosdev);
+	if (err)
+		pr_err("Usb-audio switch registration failed\n");
+	else
+		pr_debug("usb hs_detected\n");
 	return usb_register(&usb_audio_driver);
 }
 
 static void __exit snd_usb_audio_cleanup(void)
 {
 	usb_deregister(&usb_audio_driver);
+	kfree(usbaudiosdev);
 }
 
 module_init(snd_usb_audio_init);
