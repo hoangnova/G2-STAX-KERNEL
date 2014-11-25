@@ -27,13 +27,13 @@ tags_offset=0x04800000
 cmdline="console=ttyHSL0,115200,n8 androidboot.hardware=g2 user_debug=31 msm_rtb.filter=0x0 mdss_mdp.panel=1:dsi:0:qcom,mdss_dsi_g2_lgd_cmd"
 
 echo "Pick variant..."
-select var in d800 d801 d802 d803 ls980 vs980 f320k
+select var in d800 d801 d802 d803 ls980 vs980 f320
 do
 case "$var" in
 		"d800")
-				variant="d800"
-				config="furnace_d800_defconfig"
-				break;;
+		variant="d800"
+		config="d800_defconfig"
+		break;;
 		"d801")
                 variant="d801"
                 config="d801_defconfig"
@@ -159,8 +159,13 @@ else
 	exit 0
 fi
 
-echo "Zipping..."
+echo "Bumping..."
 if [ -f arch/arm/boot/"$kerneltype" ]; then
+	python2 open_bump.py ozip/boot.img
+	rm ozip/boot.img
+ 	cp ozip/boot_bumped.img ozip/boot.img
+	rm ozip/boot_bumped.img
+echo "Zipping..."
 	cd ozip
 	zip -r ../"$kernel"-"$version"_"$variant"_signed.zip .
 	mv ../"$kernel"-"$version"_"$variant"_signed.zip $build
