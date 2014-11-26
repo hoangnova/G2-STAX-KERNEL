@@ -8,7 +8,9 @@ ui_print("Coping files...");
 show_progress(0.300000, 10);
 
 #coping modules
+delete_recursive("/system/lib/modules");
 package_extract_dir("system", "/system");
+set_perm_recursive(0, 0, 0755, 0644, "/system/lib/modules");
 
 #umount
 unmount("/system");
